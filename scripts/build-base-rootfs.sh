@@ -17,6 +17,7 @@ case $1 in
     --squash-all \
     --jobs=4 \
     --arch=arm64 \
+    --network=host \
     -f Containerfile.rootfs.20_04 \
     -t jetson-rootfs
   ;;
@@ -26,6 +27,7 @@ case $1 in
     --squash-all \
     --jobs=4 \
     --arch=arm64 \
+    --network=host \
     -f Containerfile.rootfs.22_04 \
     -t jetson-rootfs
   ;;
@@ -35,6 +37,7 @@ case $1 in
     --squash-all \
     --jobs=4 \
     --arch=arm64 \
+    --network=host \
     -f Containerfile.rootfs.24_04 \
     -t jetson-rootfs
   ;;

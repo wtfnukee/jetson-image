@@ -146,12 +146,14 @@ L4T_PACKAGES="${L4T_PACKAGES# }"
 sudo -E XDG_RUNTIME_DIR= DBUS_SESSION_BUS_ADDRESS= podman build \
     --cap-add=all \
     --jobs=4 \
+    --network=host \
     --build-arg L4T_PACKAGES="$L4T_PACKAGES" \
     -f Containerfile.image.l4t"$l4t" \
     -t jetson-build-image-l4t"$l4t"
 
 sudo podman run \
     --rm \
+    --network=host \
     --privileged \
     -v .:/jetson \
     -e JETSON_BOARD="$board" \
