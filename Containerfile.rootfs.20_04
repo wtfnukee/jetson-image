@@ -70,6 +70,56 @@ RUN apt install -y \
         e2fsprogs \
         mtd-utils
 
+# Enhanced networking packages
+RUN apt install -y \
+        network-manager \
+        network-manager-wifi \
+        network-manager-openvpn \
+        network-manager-pptp \
+        network-manager-strongswan \
+        wireless-tools \
+        iw \
+        rfkill \
+        traceroute \
+        mtr-tiny \
+        nmap \
+        tcpdump \
+        wireshark-common \
+        iftop \
+        nethogs \
+        dhcpcd5 \
+        openssh-server \
+        chrony \
+        ntp \
+        resolvconf \
+        avahi-daemon \
+        avahi-utils \
+        hostapd \
+        dnsmasq \
+        iptables \
+        ufw \
+        fail2ban \
+        ethtool \
+        lshw \
+        lspci \
+        lsusb \
+        usbutils \
+        pciutils \
+        wireless-regdb \
+        crda \
+        iwconfig \
+        wavemon \
+        wifi-menu \
+        connman \
+        connman-client \
+        bluez \
+        bluetooth \
+        pulseaudio-module-bluetooth \
+        alsa-utils \
+        alsa-tools \
+        alsa-ucm-conf \
+        alsa-topology-conf
+
 
 RUN wget -q https://github.com/pythops/tegratop/releases/latest/download/tegratop-linux-arm64 -O /usr/local/bin/tegratop && \
     chmod +x /usr/local/bin/tegratop
@@ -84,9 +134,14 @@ RUN locale-gen en_US.UTF-8
 # Network configuration
 COPY config/netcfg.yaml /etc/netplan/netcfg.yaml
 
-# Enable services at startuo
+# Enable services at startup
 RUN systemctl enable resizerootfs.service && \
-    systemctl enable systemd-timesyncd
+    systemctl enable systemd-timesyncd && \
+    systemctl enable NetworkManager && \
+    systemctl enable ssh && \
+    systemctl enable chrony && \
+    systemctl enable avahi-daemon && \
+    systemctl enable bluetooth
 
 # New user
 # username: jetson
