@@ -87,8 +87,7 @@ RUN apt install -y \
         wireless-tools \
         iw \
         rfkill \
-        openssh-server \
-        resolvconf
+        openssh-server
 
 RUN wget -q https://github.com/pythops/tegratop/releases/latest/download/tegratop-linux-arm64 -O /usr/local/bin/tegratop && \
     chmod +x /usr/local/bin/tegratop
